@@ -1,0 +1,33 @@
+{% extends "scheduler/layout.html" %}
+
+{% block content %}
+    <h1>People</h1>
+    <div>
+        <button><a href = "{% url 'add_person' %}">+ Add person</a></button>
+    </div>
+    <div><p> </p></div>
+    <table class="table table-sm">
+        <thead>
+          <tr>
+            <th scope="col">Short name</th>
+            <th scope="col">Name</th>
+            <th scope="col">e-mail</th>
+            <th scope="col">Role</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for person in people%}
+                <tr>
+                    <td>{{ person.short_name }}</td>
+                    <td>{{ person.name }}</td>
+                    <td>{{ person.email }}</td>
+                    <td>{{ person.role }}</td>
+                    <td><button><a href = "{% url 'edit_person' person.id %}">Edit</a></button></td>
+                    <td><button><a href = "{% url 'delete_person' person.id %}">Delete</a></button></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
